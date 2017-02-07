@@ -1,17 +1,15 @@
 //This is primarily the work of Douglas Crockford,
 //as described here[1] 
-
 //[1] http://javascript.crockford.com/tdop/tdop.html
 
 //I intend to modify and extend it for funzies. 
 
 
 
+
 const tokenizer = require("./tokenizer.js");
 
 String.prototype.tokens = tokenizer;
-
-
 
 module.exports = (function() {
 let token, tokens, token_nr, scope;

@@ -1,0 +1,29 @@
+{
+  "name": "tdopjs",
+  "version": "1.0.0",
+  "description": "Top-Down-Operator-Precedence JavaScript Parser",
+  "main": "buildTree.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Engid/TDOPjs.git"
+  },
+  "keywords": [
+    "Top",
+    "Down",
+    "Operator",
+    "Precedence",
+    "Douglas",
+    "Crockford",
+    "Vaughan",
+    "Pratt"
+  ],
+  "author": "Nick Gideo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Engid/TDOPjs/issues"
+  },
+  "homepage": "https://github.com/Engid/TDOPjs#readme"
+}
