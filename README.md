@@ -47,6 +47,8 @@ The output should look like so:
 ```
 Scanning..
 Parsing..
+Printing Tree for test.js:
+
 [ { value: '=',
     arity: 'binary',
     first: 
@@ -57,12 +59,305 @@ Parsing..
        led: null,
        std: null,
        lbp: 0,
-       scope: [Object] },
+       scope: 
+        { def: 
+           { var: { value: 'var', arity: 'name', reserved: true },
+             sweetAdder: [Circular],
+             goober: 
+              { value: 'goober',
+                arity: 'name',
+                reserved: false,
+                nud: [Function: itself],
+                led: null,
+                std: null,
+                lbp: 0,
+                scope: [Circular] } },
+          parent: undefined } },
     second: 
      { value: 'function',
        arity: 'function',
-       first: [Object],
-       second: [Object] } },
+       first: 
+        [ { value: 'dawg',
+            arity: 'name',
+            reserved: false,
+            nud: [Function: itself],
+            led: null,
+            std: null,
+            lbp: 0,
+            scope: 
+             { def: 
+                { dawg: [Circular],
+                  fish: 
+                   { value: 'fish',
+                     arity: 'name',
+                     reserved: false,
+                     nud: [Function: itself],
+                     led: null,
+                     std: null,
+                     lbp: 0,
+                     scope: [Circular] },
+                  a: 
+                   { value: 'a',
+                     arity: 'name',
+                     reserved: false,
+                     nud: [Function: itself],
+                     led: null,
+                     std: null,
+                     lbp: 0,
+                     scope: [Circular] },
+                  while: 
+                   { value: 'while',
+                     arity: 'statement',
+                     reserved: true,
+                     first: 
+                      { value: '<',
+                        arity: 'binary',
+                        first: { value: 'dawg', arity: 'name' },
+                        second: { value: 'fish', arity: 'name' } },
+                     second: 
+                      [ { value: '=',
+                          arity: 'binary',
+                          first: { value: 'dawg', arity: 'name' },
+                          second: 
+                           { value: '+',
+                             arity: 'binary',
+                             first: { value: 'dawg', arity: 'name' },
+                             second: { value: 1, arity: 'literal' } },
+                          assignment: true },
+                        { value: '(',
+                          arity: 'binary',
+                          first: 
+                           { value: '.',
+                             arity: 'binary',
+                             first: { value: 'a', arity: 'name' },
+                             second: { value: 'push', arity: 'literal' } },
+                          second: [ { value: 'dawg', arity: 'name' } ] } ] },
+                  return: 
+                   { value: 'return',
+                     arity: 'statement',
+                     reserved: true,
+                     first: { value: 'a', arity: 'name' } } },
+               parent: 
+                { def: 
+                   { var: { value: 'var', arity: 'name', reserved: true },
+                     sweetAdder: 
+                      { value: 'sweetAdder',
+                        arity: 'name',
+                        reserved: false,
+                        nud: [Function: itself],
+                        led: null,
+                        std: null,
+                        lbp: 0,
+                        scope: [Circular] },
+                     goober: 
+                      { value: 'goober',
+                        arity: 'name',
+                        reserved: false,
+                        nud: [Function: itself],
+                        led: null,
+                        std: null,
+                        lbp: 0,
+                        scope: [Circular] } },
+                  parent: undefined } } },
+          { value: 'fish',
+            arity: 'name',
+            reserved: false,
+            nud: [Function: itself],
+            led: null,
+            std: null,
+            lbp: 0,
+            scope: 
+             { def: 
+                { dawg: 
+                   { value: 'dawg',
+                     arity: 'name',
+                     reserved: false,
+                     nud: [Function: itself],
+                     led: null,
+                     std: null,
+                     lbp: 0,
+                     scope: [Circular] },
+                  fish: [Circular],
+                  a: 
+                   { value: 'a',
+                     arity: 'name',
+                     reserved: false,
+                     nud: [Function: itself],
+                     led: null,
+                     std: null,
+                     lbp: 0,
+                     scope: [Circular] },
+                  while: 
+                   { value: 'while',
+                     arity: 'statement',
+                     reserved: true,
+                     first: 
+                      { value: '<',
+                        arity: 'binary',
+                        first: { value: 'dawg', arity: 'name' },
+                        second: { value: 'fish', arity: 'name' } },
+                     second: 
+                      [ { value: '=',
+                          arity: 'binary',
+                          first: { value: 'dawg', arity: 'name' },
+                          second: 
+                           { value: '+',
+                             arity: 'binary',
+                             first: { value: 'dawg', arity: 'name' },
+                             second: { value: 1, arity: 'literal' } },
+                          assignment: true },
+                        { value: '(',
+                          arity: 'binary',
+                          first: 
+                           { value: '.',
+                             arity: 'binary',
+                             first: { value: 'a', arity: 'name' },
+                             second: { value: 'push', arity: 'literal' } },
+                          second: [ { value: 'dawg', arity: 'name' } ] } ] },
+                  return: 
+                   { value: 'return',
+                     arity: 'statement',
+                     reserved: true,
+                     first: { value: 'a', arity: 'name' } } },
+               parent: 
+                { def: 
+                   { var: { value: 'var', arity: 'name', reserved: true },
+                     sweetAdder: 
+                      { value: 'sweetAdder',
+                        arity: 'name',
+                        reserved: false,
+                        nud: [Function: itself],
+                        led: null,
+                        std: null,
+                        lbp: 0,
+                        scope: [Circular] },
+                     goober: 
+                      { value: 'goober',
+                        arity: 'name',
+                        reserved: false,
+                        nud: [Function: itself],
+                        led: null,
+                        std: null,
+                        lbp: 0,
+                        scope: [Circular] } },
+                  parent: undefined } } } ],
+       second: 
+        [ { value: '=',
+            arity: 'binary',
+            first: 
+             { value: 'a',
+               arity: 'name',
+               reserved: false,
+               nud: [Function: itself],
+               led: null,
+               std: null,
+               lbp: 0,
+               scope: 
+                { def: 
+                   { dawg: 
+                      { value: 'dawg',
+                        arity: 'name',
+                        reserved: false,
+                        nud: [Function: itself],
+                        led: null,
+                        std: null,
+                        lbp: 0,
+                        scope: [Circular] },
+                     fish: 
+                      { value: 'fish',
+                        arity: 'name',
+                        reserved: false,
+                        nud: [Function: itself],
+                        led: null,
+                        std: null,
+                        lbp: 0,
+                        scope: [Circular] },
+                     a: [Circular],
+                     while: 
+                      { value: 'while',
+                        arity: 'statement',
+                        reserved: true,
+                        first: 
+                         { value: '<',
+                           arity: 'binary',
+                           first: { value: 'dawg', arity: 'name' },
+                           second: { value: 'fish', arity: 'name' } },
+                        second: 
+                         [ { value: '=',
+                             arity: 'binary',
+                             first: { value: 'dawg', arity: 'name' },
+                             second: 
+                              { value: '+',
+                                arity: 'binary',
+                                first: { value: 'dawg', arity: 'name' },
+                                second: { value: 1, arity: 'literal' } },
+                             assignment: true },
+                           { value: '(',
+                             arity: 'binary',
+                             first: 
+                              { value: '.',
+                                arity: 'binary',
+                                first: { value: 'a', arity: 'name' },
+                                second: { value: 'push', arity: 'literal' } },
+                             second: [ { value: 'dawg', arity: 'name' } ] } ] },
+                     return: 
+                      { value: 'return',
+                        arity: 'statement',
+                        reserved: true,
+                        first: { value: 'a', arity: 'name' } } },
+                  parent: 
+                   { def: 
+                      { var: { value: 'var', arity: 'name', reserved: true },
+                        sweetAdder: 
+                         { value: 'sweetAdder',
+                           arity: 'name',
+                           reserved: false,
+                           nud: [Function: itself],
+                           led: null,
+                           std: null,
+                           lbp: 0,
+                           scope: [Circular] },
+                        goober: 
+                         { value: 'goober',
+                           arity: 'name',
+                           reserved: false,
+                           nud: [Function: itself],
+                           led: null,
+                           std: null,
+                           lbp: 0,
+                           scope: [Circular] } },
+                     parent: undefined } } },
+            second: { value: '[', arity: 'unary', first: [] } },
+          { value: 'while',
+            arity: 'statement',
+            reserved: true,
+            first: 
+             { value: '<',
+               arity: 'binary',
+               first: { value: 'dawg', arity: 'name' },
+               second: { value: 'fish', arity: 'name' } },
+            second: 
+             [ { value: '=',
+                 arity: 'binary',
+                 first: { value: 'dawg', arity: 'name' },
+                 second: 
+                  { value: '+',
+                    arity: 'binary',
+                    first: { value: 'dawg', arity: 'name' },
+                    second: { value: 1, arity: 'literal' } },
+                 assignment: true },
+               { value: '(',
+                 arity: 'binary',
+                 first: 
+                  { value: '.',
+                    arity: 'binary',
+                    first: { value: 'a', arity: 'name' },
+                    second: { value: 'push', arity: 'literal' } },
+                 second: [ { value: 'dawg', arity: 'name' } ] } ] },
+          { value: 'return',
+            arity: 'statement',
+            reserved: true,
+            first: { value: 'a', arity: 'name' } } ] } },
   { value: '=',
     arity: 'binary',
     first: 
@@ -73,8 +368,28 @@ Parsing..
        led: null,
        std: null,
        lbp: 0,
-       scope: [Object] },
-    second: { value: '(', arity: 'binary', first: [Object], second: [Object] } } ]
+       scope: 
+        { def: 
+           { var: { value: 'var', arity: 'name', reserved: true },
+             sweetAdder: 
+              { value: 'sweetAdder',
+                arity: 'name',
+                reserved: false,
+                nud: [Function: itself],
+                led: null,
+                std: null,
+                lbp: 0,
+                scope: [Circular] },
+             goober: [Circular] },
+          parent: undefined } },
+    second: 
+     { value: '(',
+       arity: 'binary',
+       first: { value: 'sweetAdder', arity: 'name' },
+       second: 
+        [ { value: 0, arity: 'literal' },
+          { value: 15, arity: 'literal' } ] } } ]
+
 
 ```
 
