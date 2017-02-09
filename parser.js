@@ -1,3 +1,8 @@
+/**
+Version 0.0.1
+*/
+
+
 /*
   This parser is based on the work of Douglas 
   Crockford, as described on his web page [1]. 
@@ -16,9 +21,6 @@
   created by a factory function, and methods can then 
   be dynamically assigned to allow for the token to 
   handle its own parsing logic. 
-
-  Each token will need a few basic elements to allow 
-  for it to assist in building the parse tree. First,  
 
 
    References:
@@ -40,7 +42,6 @@ let token, tokens, token_nr, scope;
   All Symbols are kept in the symbol table
 */
 let symbol_table = {};
-
 
 
 /*
@@ -90,12 +91,12 @@ let original_scope = {
     }
 
     this.def[n.value] = n;
-    n.reserved   = false;
-    n.nud     = itself;
-    n.led      = null;
-    n.std     = null;
-    n.lbp     = 0;
-    n.scope    = scope;
+    n.reserved        = false;
+    n.nud             = itself;
+    n.led             = null;
+    n.std             = null;
+    n.lbp             = 0;
+    n.scope           = scope;
     return n;
   },
 
