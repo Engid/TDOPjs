@@ -13,6 +13,7 @@ he implements a parser first presented by Vaughan Pratt. I'll be building the sa
 
 * Object literals and array literals. This is a very convenient notation for creating new objects and arrays. JavaScript literals were the inspiration for the JSON data interchange format[1].
 
+<br>
 # TDOP Basics
 
   Top Down Operator Precedence (TDOP) is a type of
@@ -31,7 +32,7 @@ he implements a parser first presented by Vaughan Pratt. I'll be building the sa
 
 
 
-
+<br>
 # Use
 
   As this project is in a very early stage, it has limited useability. 
