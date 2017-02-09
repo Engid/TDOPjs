@@ -1,6 +1,6 @@
 # Top Down Operator Precedence JavaScript Parser
 
-  In Douglas Crockford's article [Top Down Operator Precedence](http://javascript.crockford.com/tdop/tdop.html) [<a href="README.md/#1">1</a>]
+  In Douglas Crockford's article [Top Down Operator Precedence](http://javascript.crockford.com/tdop/tdop.html) [<a href="./README.md/#one">1</a>]
 he implements a parser first presented by Vaughan Pratt. I'll be building the same Parser myself, with the hopes of extending it for fun.  
 <br>
 
@@ -336,7 +336,7 @@ Printing Tree for test01.js:
 
 
 ## References
-[<span id="1">1</span>]  http://javascript.crockford.com/tdop/tdop.html
+[<span id="one">1</span>]  http://javascript.crockford.com/tdop/tdop.html
   Douglas Crockford's original TDOP parser. 
 
 [2] http://eli.thegreenplace.net/2010/01/02/top-down-operator-precedence-parsing/ 
