@@ -5,6 +5,13 @@ In Douglas Crockford's article [Top Down Operator Precedence](http://javascript.
 he implements a parser first presented by Vaughan Pratt. I'll be building the same Parser myself, with the hopes of extending it for fun.  
 <br>
 <br>
+# Background
+
+
+
+
+
+
 # Use
 
 As this project is in a very early stage, it has limited useability. 

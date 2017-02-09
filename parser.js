@@ -1,11 +1,31 @@
-//This is primarily the work of Douglas Crockford,
-//as described here[1] 
-//[1] http://javascript.crockford.com/tdop/tdop.html
+/*
+	This parser is based on the work of Douglas 
+	Crockford, as described on his web page [1]. 
+	I intend to modify and extend it for funzies. 
+	
+	Top Down Operator Precedence (TDOP) is a type of
+	parser that is based on a Recursive descent model,
+	but it differs by treating the tokens as something
+	simmilar to objects. Recursive descent associates
+	'semantic actions' with grammer rules, while TDOP
+	has the actions associated with the tokens [2]. 
 
-//I intend to modify and extend it for funzies. 
+	This feature allows for TDOP to be implemented
+	very well by a dynamic functional-object-oriented 
+	language like JavaScript. Generic objects are first 
+	created by a factory function, and methods can then 
+	be dynamically assigned to allow for the token to 
+	handle its own parsing logic. 
+
+	Each token will need a few basic elements to allow 
+	for it to assist in building the parse tree. First,	
 
 
+ 	References:
+	[1]  http://javascript.crockford.com/tdop/tdop.html
 
+	[2]  eli.thegreenplace.net/2010/01/02/top-down-operator-precedence-parsing/
+*/
 
 const tokenizer = require("./tokenizer.js");
 
@@ -13,12 +33,37 @@ String.prototype.tokens = tokenizer;
 
 module.exports = (function() {
 let token, tokens, token_nr, scope;
+
+ 
+
+/*
+	All Symbols are kept in the symbol table
+*/
 let symbol_table = {};
 
-let itself = function() {
-	return this;
-};
 
+
+/*
+	Token Prototype.
+	Each symbol will have a unique token object
+	that will handle parsing operations. The methods
+	for parsing will be defined using the factory
+	functions defined bellow, over-riding the
+	stubs listed here. 
+	
+
+	Properties:
+
+	-nud(): Stands for Null Denotation. The nud
+	method is used by prefix operators and values
+	(ie variables and literals). 
+
+	-led(): Stands for Left Denotation. The led
+	method is used by infix and suffix operators.
+	
+	-error(): Error method. 
+	******TODO: add better error messages*****
+*/
 let original_symbol = {
 	nud: function() {
 		this.error("Undefined.");
@@ -31,6 +76,15 @@ let original_symbol = {
 	}
 };
 
+
+function () {
+	
+}
+
+
+/*
+	The original_scope object
+*/
 let original_scope = {
 	define: function(n) {
 		let t = this.def[n.value];
@@ -160,6 +214,14 @@ let expression = function(rbp) {
 		left = t.led(left);
 	}
 	return left;
+};
+
+
+/*	
+	Identity function
+*/
+let itself = function() {
+	return this;
 };
 
 
