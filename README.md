@@ -1,17 +1,17 @@
 # Top Down Operator Precedence JavaScript Parser
 
-  In Douglas Crockford's article [Top Down Operator Precedence](http://javascript.crockford.com/tdop/tdop.html) [<a href="./README.md/#one">1</a>]
+  In Douglas Crockford's article [Top Down Operator Precedence](http://javascript.crockford.com/tdop/tdop.html) [1]
 he implements a parser first presented by Vaughan Pratt. I'll be building the same Parser myself, with the hopes of extending it for fun.  
 <br>
 
 # Simplified JavaScript
-  Crockfords original parser was designed for parsing *Simplified JavaScript*, or "just the good stuff" [<a href="./#1">1</a>]. In his own words, it includes:
+  Crockfords original parser was designed for parsing *Simplified JavaScript*, or "just the good stuff" [1]. In his own words, it includes:
 
 * Functions as first class objects. Functions in Simplified JavaScript are lambdas with lexical scoping.
 
 * Dynamic objects with prototypal inheritance. Objects are class-free. We can add a new member to any object by ordinary assignment. An object can inherit members from another object.
 
-* Object literals and array literals. This is a very convenient notation for creating new objects and arrays. JavaScript literals were the inspiration for the JSON data interchange format[<a href="./#1">1</a>.
+* Object literals and array literals. This is a very convenient notation for creating new objects and arrays. JavaScript literals were the inspiration for the JSON data interchange format[1].
 
 # TDOP Basics
 
