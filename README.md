@@ -39,15 +39,20 @@ I've been working on writing out Crockford's Parser with the hopes of extending 
 <br>
 # Background
 Top Down Operator Precedence is Vaughan Pratt's generalized form of what is otherwise known as 'precedence climbing', used in recursive
-descent parsers [{3}](#three). If any of that sentence made sense to you, then congratulations! If not, then I'll try to explain. 
+descent parsers [{3}](#three). If any of that sentence made sense to you, then congratulations! If not, then I'll try to explain.
+
+
 Recursive descent parsers are very effective means for parsing statements, where tokens are neatly arranged in rigid pattterns. 
 Unfortunately, they don't do so well with parsing expressions [{4}](#four). This is where Pratt's parser does its magic: it's very good 
-at dealing with expressions because each token object is assigned a precedence, or *binding power* in Pratt's terminology [{3}](#three). 
+at dealing with expressions because each token object is assigned a precedence, or *binding power* in Pratt's terminology [{3}](#three).
+
+
 The binding power is a value that determines how tightly an operator binds to its operands. When operator tokens are parsed, their 
 binding powers are inspected by an `expression()` function which recursively gobbles up tokens into expression trees that branch 
 according to the binding powers.  
 
-**TODO** Add more explanations. 
+
+**TODO** Add more explanations. For now, check out [Eli Bendersky's](http://eli.thegreenplace.net/2010/01/02/top-down-operator-precedence-parsing/) blog post about the subject. 
 
 
 <br>
@@ -357,17 +362,17 @@ Printing Tree for test01.js:
 # References
 <a name="one">[1]</a>  http://javascript.crockford.com/tdop/tdop.html
 
-  Douglas Crockford's original TDOP parser. 
+&nbsp;&nbsp;&nbsp;&nbsp;Douglas Crockford's original TDOP parser. 
 
 <a name="two">[2]</a> http://eli.thegreenplace.net/2010/01/02/top-down-operator-precedence-parsing/ 
 
-  This post by Eli Bendersky is a solid explanation of how TDOP works.
+&nbsp;&nbsp;&nbsp;&nbsp;This post by Eli Bendersky is a solid explanation of how TDOP works.
   
 
 <a name="three">[3]</a>  http://www.oilshell.org/blog/2016/11/01.html
 
-  Pratt parsing equivalent to precedence climbing.
+&nbsp;&nbsp;&nbsp;&nbsp;Andy Chu. Pratt parsing equivalent to precedence climbing.
 
 <a name="four">[4]</a>  http://journal.stuffwithstuff.com/2011/03/19/pratt-parsers-expression-parsing-made-easy/
   
-  Another blog-post about Pratt parsers. 
+&nbsp;&nbsp;&nbsp;&nbsp;Another awesome blog-post about Pratt parsers from Bob Nystrom. 
