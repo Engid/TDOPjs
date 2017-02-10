@@ -4,7 +4,7 @@
 he implements a parser 
 [first](http://web.archive.org/web/20151223215421/http://hall.org.ua/halls/wizzard/pdf/Vaughan.Pratt.TDOP.pdf) 
 [presented](https://tdop.github.io/)
-by [Vaughan Pratt](https://en.wikipedia.org/wiki/Vaughan_Pratt). 
+by [Vaughan Pratt](https://en.wikipedia.org/wiki/Vaughan_Pratt) [{5}](#five). 
 I've been working on writing out Crockford's Parser with the hopes of extending it for fun.  
 <br>
 
@@ -376,3 +376,7 @@ Printing Tree for test01.js:
 <a name="four">[4]</a>  http://journal.stuffwithstuff.com/2011/03/19/pratt-parsers-expression-parsing-made-easy/
   
 &nbsp;&nbsp;&nbsp;&nbsp;Another awesome blog-post about Pratt parsers from Bob Nystrom. 
+
+<a name="five">[5]</a>  https://tdop.github.io/
+
+&nbsp;&nbsp;&nbsp;&nbsp;[Carl Smith](https://github.com/carlsmith) kindly made an HTML version of Pratt's original paper!
