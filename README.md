@@ -1,17 +1,21 @@
 # Top Down Operator Precedence JavaScript Parser
 
-  In Douglas Crockford's article [Top Down Operator Precedence](http://javascript.crockford.com/tdop/tdop.html) [1]
-he implements a parser first presented by Vaughan Pratt. I'll be building the same Parser myself, with the hopes of extending it for fun.  
+  In Douglas Crockford's article [Top Down Operator Precedence](http://javascript.crockford.com/tdop/tdop.html) [{1}](#one)
+he implements a parser 
+[first](http://web.archive.org/web/20151223215421/http://hall.org.ua/halls/wizzard/pdf/Vaughan.Pratt.TDOP.pdf) 
+[presented](https://tdop.github.io/)
+by [Vaughan Pratt](https://en.wikipedia.org/wiki/Vaughan_Pratt) [{5}](#five). 
+I've been working on writing out Crockford's Parser with the hopes of extending it for fun.  
 <br>
 
 # Simplified JavaScript
-  Crockfords original parser was designed for parsing *Simplified JavaScript*, or "just the good stuff" [1]. In his own words, it includes:
+  Crockfords original parser was designed for parsing *Simplified JavaScript*, or "just the good stuff" [{1}](#one). In his own words, it includes:
 
 * Functions as first class objects. Functions in Simplified JavaScript are lambdas with lexical scoping.
 
 * Dynamic objects with prototypal inheritance. Objects are class-free. We can add a new member to any object by ordinary assignment. An object can inherit members from another object.
 
-* Object literals and array literals. This is a very convenient notation for creating new objects and arrays. JavaScript literals were the inspiration for the JSON data interchange format[1].
+* Object literals and array literals. This is a very convenient notation for creating new objects and arrays. JavaScript literals were the inspiration for the JSON data interchange format[{1}](#one).
 
 <br>
 # TDOP Basics
@@ -21,11 +25,11 @@ he implements a parser first presented by Vaughan Pratt. I'll be building the sa
         but it differs by treating the tokens as something
         simmilar to objects. Recursive descent associates
         'semantic actions' with grammer rules, while TDOP
-        has the actions associated with the tokens [2].
+        has the actions associated with the tokens [{2}](#two).
 
   This feature allows for TDOP to be implemented
         very well by a dynamic functional-object-oriented
-        language like JavaScript. Generic objects first
+        language like JavaScript. Generic objects are first
         created by a factory function, and methods can then
         be dynamically assigned to allow for the token to
         handle its own parsing logic.
@@ -34,12 +38,24 @@ he implements a parser first presented by Vaughan Pratt. I'll be building the sa
 
 <br>
 # Background
+Top Down Operator Precedence is Vaughan Pratt's generalized form of what is otherwise known as 'precedence climbing', used in recursive
+descent parsers [{3}](#three). If any of that sentence made sense to you, then congratulations! If not, then I'll try to explain.
 
 
+Recursive descent parsers are very effective means for parsing statements, where tokens are neatly arranged in rigid pattterns. 
+Unfortunately, they don't do so well with parsing expressions [{4}](#four). This is where Pratt's parser does its magic: it's very good 
+at dealing with expressions because each token object is assigned a precedence, or *binding power* in Pratt's terminology [{3}](#three).
 
 
+The binding power is a value that determines how tightly an operator binds to its operands. When operator tokens are parsed, their 
+binding powers are inspected by an `expression()` function which recursively gobbles up tokens into expression trees that branch 
+according to the binding powers.  
 
 
+**TODO** Add more explanations. For now, check out [Eli Bendersky's](http://eli.thegreenplace.net/2010/01/02/top-down-operator-precedence-parsing/) blog post about the subject. 
+
+
+<br>
 # Use
 
   As this project is in a very early stage, it has limited useability. 
@@ -299,11 +315,25 @@ Printing Tree for test03.js:
 ```
 
 
+<br>
+# References
+<a name="one">[1]</a>  http://javascript.crockford.com/tdop/tdop.html
 
-## References
-[<span id="one">1</span>]  http://javascript.crockford.com/tdop/tdop.html
-  Douglas Crockford's original TDOP parser. 
+&nbsp;&nbsp;&nbsp;&nbsp;Douglas Crockford's original TDOP parser. 
 
-[2] http://eli.thegreenplace.net/2010/01/02/top-down-operator-precedence-parsing/ 
-  This post by Eli Bendersky is a solid explanation of how TDOP works.
+<a name="two">[2]</a> http://eli.thegreenplace.net/2010/01/02/top-down-operator-precedence-parsing/ 
 
+&nbsp;&nbsp;&nbsp;&nbsp;This post by Eli Bendersky is a solid explanation of how TDOP works.
+  
+
+<a name="three">[3]</a>  http://www.oilshell.org/blog/2016/11/01.html
+
+&nbsp;&nbsp;&nbsp;&nbsp;Andy Chu. Pratt parsing equivalent to precedence climbing.
+
+<a name="four">[4]</a>  http://journal.stuffwithstuff.com/2011/03/19/pratt-parsers-expression-parsing-made-easy/
+  
+&nbsp;&nbsp;&nbsp;&nbsp;Another awesome blog-post about Pratt parsers from Bob Nystrom. 
+
+<a name="five">[5]</a>  https://tdop.github.io/
+
+&nbsp;&nbsp;&nbsp;&nbsp;[Carl Smith](https://github.com/carlsmith) kindly made an HTML version of Pratt's original paper!
