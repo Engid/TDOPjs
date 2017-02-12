@@ -1,5 +1,15 @@
-//THE FILE HAS BEEN MODIFIED FROM ITS ORIGINAL FORM
-// BY NICK GIDEO 12/15/2016
+/*
+    THE FILE HAS BEEN MODIFIED FROM ITS ORIGINAL FORM
+    BY NICK GIDEO 2016-2017
+
+    ALL COMMENTS AND CODE IS ATTRIBUTED TO DOUGLAS CROCKFORD
+    IN LESS OTHERWISE NOTIFIED (IE: I'll sign with '-Nick').
+    
+    To aid in distinguishing my additions, I'll use "/*" style
+    comments. 
+*/
+
+
 
 //ORIGINAL AUTHOR CREDITS: 
 
@@ -26,12 +36,12 @@
 //      <=  >>  >>>  <>  >=  +: -: &: &&: &&
 
 
-
-//	MODIFICATIONS:
-
-//	NOTE: Crockford originally attached the function 
-// 	to String.prototype.tokens -Nick
-
+/*	
+    NOTE: Crockford originally attached the function 
+ 	to String.prototype.tokens so to keep that functionality
+    working I attached this exported function to the String
+    prototype from within the parser.js file. -Nick
+*/
 
 module.exports = function (prefix, suffix) {
     var c;                      // The current character.
