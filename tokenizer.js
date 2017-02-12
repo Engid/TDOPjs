@@ -3,9 +3,9 @@
     BY NICK GIDEO 2016-2017
 
     ALL COMMENTS AND CODE IS ATTRIBUTED TO DOUGLAS CROCKFORD
-    IN LESS OTHERWISE NOTIFIED (IE: I'll sign with '-Nick').
+    IN LESS OTHERWISE NOTIFIED (IE: I'll sign with '-Nick', or '-NZG').
     
-    To aid in distinguishing my additions, I'll use "/*" style
+    To aid in distinguishing my additions, I'll try to use "/*" style
     comments. 
 */
 
@@ -38,7 +38,7 @@
 
 /*	
     NOTE: Crockford originally attached the function 
- 	to String.prototype.tokens so to keep that functionality
+   	to String.prototype.tokens so to keep that functionality
     working I attached this exported function to the String
     prototype from within the parser.js file. -Nick
 */
@@ -47,6 +47,7 @@ module.exports = function (prefix, suffix) {
     var c;                      // The current character.
     var from;                   // The index of the start of the token.
     var i = 0;                  // The index of the current character.
+    var line = 1;               /* The line number of the token. -NZG */
     var length = this.length;
     var n;                      // The number value.
     var q;                      // The quote character.
@@ -62,7 +63,8 @@ module.exports = function (prefix, suffix) {
             type: type,
             value: value,
             from: from,
-            to: i
+            to: i,
+            line: line
         };
     };
 
@@ -91,6 +93,16 @@ module.exports = function (prefix, suffix) {
 // Ignore whitespace.
 
         if (c <= ' ') {
+          
+            /*
+              I wished to add line numbers for each token to aid in
+              debugging, so I added this hack of a line counter.
+              -NZG
+            */
+            if(c === '\n' || c === '\r\n'){
+              line += 1;
+            }
+
             i += 1;
             c = this.charAt(i);
 

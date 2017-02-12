@@ -222,6 +222,7 @@ module.exports = (function() {
 
   let advance = function(id) {
     let a, o, t, v;
+    let l, c; /* adding line and column info -NZG */
 
     if (id && token.id !== id) {
       token.error("Expected '" + id + "'.");
@@ -236,24 +237,32 @@ module.exports = (function() {
     token_nr += 1;
     v = t.value;
     a = t.type;
-
+    l = t.line; // line number from source 
+    c = t.from; // column number from source -NZG
+                 
     if (a === "name") {
       o = scope.find(v);
     } else if (a === "operator") {
       o = symbol_table[v];
       if (!o) {
-        t.error("Unknown operator.");
+        t.error("Unknown operator. See line "+l+":"+c+".");
       }
     } else if (a === "string" || a === "number") {
       a = "literal";
       o = symbol_table["(literal)"];
     } else {
-      t.error("Unexpected token.");
+      t.error("Unexpected token. See line "+l+":"+c+".");
     }
     token = Object.create(o);
     token.value = v;
     token.arity = a;
+
+    token.source = {};            //Tracking info from source code -NZG
+    token.source.line = t.line;
+    token.source.column = t.from;
+    
     return token;
+
   };
 
 
