@@ -33,18 +33,34 @@ Version 0.0.1
   [2]  eli.thegreenplace.net/2010/01/02/top-down-operator-precedence-parsing/
 */
 
-const tokenizer = require("./tokenizer.js");
+/*
+  "Transform a token object into an exception object and throw it." -DC
 
+  Crockford uses this error method throughout the his original parser code,
+  and within his tokenizer function. -Nick
+*/
+Object.prototype.error = function (message, t) {
+    t = t || this;
+    t.name = "SyntaxError";
+    t.message = message;
+    throw t;
+};
+
+
+const tokenizer = require("./tokenizer.js");
+/* 
+  Crockford originally added the tokenizer to the String 
+  prototype, so I've imported the function and added it here. 
+*/
 String.prototype.tokens = tokenizer;
 
 
 /*
   Create the NodeJs module by using an
   immediately-invoked function closure. 
-  In other words, we grant access to the 
-  parser by returning a function that has
-  been closed around by the scope of the outer
-  function (which contains the parsing logic). 
+  In other words, the parser is accessed
+  by a function which the parser function
+  itself returns. Very meta, like whoa! 
 */
 module.exports = (function() {
 
@@ -88,8 +104,7 @@ module.exports = (function() {
     functions defined bellow, over-riding the
     stubs listed here. 
 
-
-    Properties:
+    Members:
 
     nud(): Stands for Null Denotation. The nud
     method is used by prefix operators and values
@@ -97,10 +112,6 @@ module.exports = (function() {
 
     led(): Stands for Left Denotation. The led
     method is used by infix and suffix operators.
-
-    error(): "Transform a token object into an 
-    exception object and throw it." -DC
-
   */
   let original_symbol = {
     nud: function() {
@@ -108,14 +119,38 @@ module.exports = (function() {
     },
     led: function() {
       this.error("Missing operator.");
-    },
-    error: function (message, t) {
-      t = t || this;
-      t.name = "SyntaxError";
-      t.message = message;
-      throw t;
+    }
   };
 
+  /**
+    The symbol creating factory function. 
+    
+    It checks to see if the symbol object
+    already exists in the symbol_table, and
+    if so it potentially updates the binding 
+    power. If the symbol doesn't exist, it creates
+    one and puts it in the symbol_table object. 
+    
+    @param {string} id - symbol. ie: "("
+    @param {number} bp - binding power
+    
+    @return {object} s - new symbol
+  */
+  let symbol = function(id, bp){
+    let s = symbol_table[id];
+    bp = bp || 0;
+    if (s) {
+      if (bp >= s.lbp) {
+        s.lbp = bp;
+      } 
+    } else {
+      s = Object.create(original_symbol);
+      s.id = s.value = id;
+      s.lbp = bp;
+      symbol_table[id] = s;  
+    }
+    return s;
+  };
 
   /*
     The original_scope object
@@ -184,22 +219,6 @@ module.exports = (function() {
     scope.parent = s;
     return scope;
   }
-
-  let symbol = function(id, bp){
-    let s = symbol_table[id];
-    bp = bp || 0;
-    if (s) {
-      if (bp >= s.lbp) {
-        s.lbp = bp;
-      } 
-    } else {
-      s = Object.create(original_symbol);
-      s.id = s.value = id;
-      s.lbp = bp;
-      symbol_table[id] = s;  
-    }
-    return s;
-  };
 
   let advance = function(id) {
     let a, o, t, v;
