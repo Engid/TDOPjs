@@ -48,6 +48,7 @@ module.exports = function (prefix, suffix) {
     var from;                   // The index of the start of the token.
     var i = 0;                  // The index of the current character.
     var line = 1;               /* The line number of the token. -NZG */
+    var offset = -1;
     var length = this.length;
     var n;                      // The number value.
     var q;                      // The quote character.
@@ -64,7 +65,8 @@ module.exports = function (prefix, suffix) {
             value: value,
             from: from,
             to: i,
-            line: line
+            line: line,
+            column: from - offset
         };
     };
 
@@ -101,6 +103,7 @@ module.exports = function (prefix, suffix) {
             */
             if(c === '\n' || c === '\r\n'){
               line += 1;
+              offset = i; //store index to subtract offset for column -NZG
             }
 
             i += 1;

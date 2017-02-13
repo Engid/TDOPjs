@@ -259,7 +259,7 @@ module.exports = (function() {
 
     token.source = {};            //Tracking info from source code -NZG
     token.source.line = t.line;
-    token.source.column = t.from;
+    token.source.column = t.column;
     
     return token;
 

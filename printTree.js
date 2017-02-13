@@ -11,6 +11,11 @@ try {
   console.log( util.inspect(tree, {depth:null}) );
 } 
 catch (e) {
-  console.error(e);
+console.error(`
+${e.name} 
+${e.message}
+Line: ${e.source.line}
+Column: ${e.source.column} 
+`);
 }
 
