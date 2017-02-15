@@ -310,10 +310,20 @@ Printing Tree for test03.js:
               arity: 'binary',
               first: { value: 'y', arity: 'name' },
               second: { value: 'z', arity: 'name' } } } } } }
-
-
 ```
 
+
+<br>
+# Future Work
+
+As this project is a work-in progress, there is always room for improvement. One area for improvement might be to follow
+Andy Chu's lead [{6}](#six) and re-design the implementation to accomplish some of the following:
+- Avoid Globals
+- Use 'pure' functions opperating on the AST as data
+- Increase the modularity by allowing a 'spec' definition of `nud` and `led` functions be defined apart from the parsing mechanics
+
+The last part is the most immediately useful, because a `spec` file could be used to define a DSL in a modular way. Also, 
+language revisions could be separated out into versions based on `spec` files. 
 
 <br>
 # References
@@ -337,3 +347,7 @@ Printing Tree for test03.js:
 <a name="five">[5]</a>  https://tdop.github.io/
 
 &nbsp;&nbsp;&nbsp;&nbsp;[Carl Smith](https://github.com/carlsmith) kindly made an HTML version of Pratt's original paper!
+
+<a name="six">[6]</a>  https://github.com/andychu/pratt-parsing-demo
+
+&nbsp;&nbsp;&nbsp;&nbsp;Andy Chu [see ref 3] also implemented his own Pratt parser in Python in a clean and modular way. 
