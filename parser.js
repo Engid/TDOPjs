@@ -245,13 +245,13 @@ module.exports = (function() {
     } else if (a === "operator") {
       o = symbol_table[v];
       if (!o) {
-        t.error("Unknown operator. See line "+l+":"+c+".");
+        t.error("Unknown operator.");
       }
     } else if (a === "string" || a === "number") {
       a = "literal";
       o = symbol_table["(literal)"];
     } else {
-      t.error("Unexpected token. See line "+l+":"+c+".");
+      t.error("Unexpected token.");
     }
     token = Object.create(o);
     token.value = v;
