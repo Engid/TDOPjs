@@ -98,7 +98,10 @@ module.exports = function (prefix, suffix) {
           
             /*
               I wished to add line numbers for each token to aid in
-              debugging, so I added this hack of a line counter.
+              debugging. To do so, we simply count '\n' characters. 
+              To get column numbers, we store the index value in the var
+              `offset` everytime we find a '\n'. We then subtract the `offset`
+              from the starting index of each token, kept in the `from` var
               -NZG
             */
             if(c === '\n' || c === '\r\n'){
