@@ -390,6 +390,12 @@ module.exports = (function() {
 
   /* Symbol Initialization */
 
+  
+  /*
+    symbol() takes a sting for the token's text character 
+    and an optional binding-power value. If not provided, 
+    the binding-power defaults to 0. 
+  */
   symbol(':');
   symbol(';');
   symbol(',');
