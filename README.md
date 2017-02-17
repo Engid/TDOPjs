@@ -6,8 +6,24 @@ he implements a parser
 [presented](https://tdop.github.io/)
 by [Vaughan Pratt](https://en.wikipedia.org/wiki/Vaughan_Pratt) [{5}](#five). 
 I've been working on writing out Crockford's Parser with the hopes of extending it for fun.  
-<br>
 
+<br>
+# Motivation
+I began typing out Crockfords parser implementation (using the published version from Beautiful Code) over the Holiday Break 
+from University between 2016-2017. I needed a simple coding project to practice learning VIM before my Programming 2 course 
+for the Spring of 2017, where I knew we would be primarily using the instructors Linux server via SSH. So typing out 
+Crockford's code was a great way to practive VIM, and also learn a little bit about parsing in the process. I did my best to
+understand the code, but it remained ellusive even though I could grok the simplicity of its design. 
+
+I've decided to return to the project and add extensive documentation as a way to *learn* what the parser does. My plan is 
+to flesh out this README file with explanations from Pratt's original paper, as well as other notes from other people's 
+implementations (See References at the bottom). I also plan to add a lot of comments to the code itself, at the risk of 
+looking like a [n00b](http://steve-yegge.blogspot.com/2008/02/portrait-of-n00b.html). Basically I'm writing this for a new 
+JavaScript coder to be able to write their own (toy) parser, incase they want to better [understand](http://steve-yegge.blogspot.com/2007/06/rich-programmer-food.html) how 
+computers work.  
+
+
+<br>
 # Simplified JavaScript
   Crockfords original parser was designed for parsing *Simplified JavaScript*, or "just the good stuff" [{1}](#one). In his own words, it includes:
 
