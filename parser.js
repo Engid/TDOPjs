@@ -64,63 +64,104 @@ String.prototype.tokens = tokenizer;
 */
 module.exports = (function() {
 
-  /* Global Variables */
+ 
 
-  /* 
-    token holds the current token.
-    It is assigned by advance(). 
-  */
+   
+    
+  // Holds current token.  It is assigned by advance(). 
   let token; 
 
-  /*
-    tokens holds an array of token objects
-    It is assigned by the tokenizer. 
-  */  
+  // Holds an array of token objects. It is assigned by the tokenizer. 
   let tokens;
 
-  /*
-    token_nr is the index of the current token in tokens.
-    It is incremented within advance()
-  */
+  
+  // Index of the current token in tokens[]. It is incremented within advance()
   let token_nr;
 
-  /*
-    scope holds the current scope. 
-  */  
+  //  holds the current scope. 
   let scope;
-
-  /*
-    All Symbols are kept in the symbol table
-  */
+ 
+  //  All Symbols are kept in the symbol table
   let symbol_table = {};
 
-  //END OF GLOBALS
-
   /*
-    Token Prototype.
-    Each symbol will have a unique token object
-    that will handle parsing operations. The methods
-    for parsing will be defined using the factory
-    functions defined bellow, over-riding the
-    stubs listed here. 
+    This object serves as the Prototype for all tokens, which are created by
+    advance(). Each symbol has a unique token object with methods that handle 
+    parsing operator precedence. The methods provided here are intented to be
+    re-assigned at token-definition time. 
+   
+    original_symbol#nud Stands for Null Denotation. The nud method is used by 
+    prefix operators and values (ie variables and literals). When a variable 
+    token is defined, its nud() method is reassigned to the static-method 
+    itself(). If an incorrect token is parsed (like a spelling error), this 
+    #nud() will be called to throw the "Undefined" error.
 
-    Members:
-
-    nud(): Stands for Null Denotation. The nud
-    method is used by prefix operators and values
-    (ie variables and literals). 
-
-    led(): Stands for Left Denotation. The led
-    method is used by infix and suffix operators.
+    original_symbol#led Stands for Left Denotation. The led method is used 
+    by infix and suffix operators.
   */
   let original_symbol = {
+    /** @abstract*/
     nud: function() {
       this.error("Undefined.");
     },
+    /** @abstract*/
     led: function() {
       this.error("Missing operator.");
     }
   };
+
+
+  /**
+    Advances to the next token in the token array, and places a newly created
+    token object in the place of the 'global' token variable. 
+   
+    @param {string} id - optional. Tests that current token has the same id. 
+   */
+  let advance = function(id) {
+    let a, o, t, v;
+    let l, c; /* adding line and column info -NZG */
+
+    if (id && token.id !== id) {
+      token.error("Expected '" + id + "'.");
+    }
+  
+    if (token_nr >= tokens.length) {
+      token = symbol_table["(end)"];
+      return;
+    }
+
+    t = tokens[token_nr];
+    token_nr += 1;
+    v = t.value;
+    a = t.type;
+    l = t.line; // line number from source 
+    c = t.from; // column number from source -NZG
+                 
+    if (a === "name") {
+      o = scope.find(v);
+    } else if (a === "operator") {
+      o = symbol_table[v];
+      if (!o) {
+        t.error("Unknown operator.");
+      }
+    } else if (a === "string" || a === "number") {
+      a = "literal";
+      o = symbol_table["(literal)"];
+    } else {
+      t.error("Unexpected token.");
+    }
+    token = Object.create(o);
+    token.value = v;
+    token.arity = a;
+
+    token.source = {};            //Tracking info from source code -NZG
+    token.source.line = t.line;
+    token.source.column = t.column;
+    
+    return token;
+
+  };
+
 
   /**
     The symbol creating factory function. 
@@ -219,52 +260,6 @@ module.exports = (function() {
     scope.parent = s;
     return scope;
   }
-
-  let advance = function(id) {
-    let a, o, t, v;
-    let l, c; /* adding line and column info -NZG */
-
-    if (id && token.id !== id) {
-      token.error("Expected '" + id + "'.");
-    }
-
-    if (token_nr >= tokens.length) {
-      token = symbol_table["(end)"];
-      return;
-    }
-
-    t = tokens[token_nr];
-    token_nr += 1;
-    v = t.value;
-    a = t.type;
-    l = t.line; // line number from source 
-    c = t.from; // column number from source -NZG
-                 
-    if (a === "name") {
-      o = scope.find(v);
-    } else if (a === "operator") {
-      o = symbol_table[v];
-      if (!o) {
-        t.error("Unknown operator.");
-      }
-    } else if (a === "string" || a === "number") {
-      a = "literal";
-      o = symbol_table["(literal)"];
-    } else {
-      t.error("Unexpected token.");
-    }
-    token = Object.create(o);
-    token.value = v;
-    token.arity = a;
-
-    token.source = {};            //Tracking info from source code -NZG
-    token.source.line = t.line;
-    token.source.column = t.column;
-    
-    return token;
-
-  };
-
 
   let expression = function(rbp) {
     let left;
